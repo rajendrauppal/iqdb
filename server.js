@@ -42,6 +42,9 @@ app.get('/', (req, res) => {
   });
 });
 
+// setup routes
+require('./app/routes/question.routes')(app);
+
 // fire up the server - listen for requests
 app.listen(3000, () => {
   console.log("Server is listening on port 3000");
