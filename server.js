@@ -5,7 +5,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const jwt = require('jsonwebtoken');
 const morgan = require('morgan');
 
 // create express app
