@@ -1,6 +1,7 @@
 
 const User = require('../models/user.model');
 
+// create and save a new user
 exports.create = (req, res) => {
 
   // create a sample user
@@ -19,6 +20,21 @@ exports.create = (req, res) => {
     .catch(err => {
       res.status(500).send({
         message: err.message || "Some error occurred while saving the Question."
+      });
+    });
+
+}
+
+// fetch and return all users from mongodb
+exports.findAll = (req, res) => {
+
+  User.find()
+    .then(users => {
+      res.send(users);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: err.message || "Some error occurred while fetching all users."
       });
     });
 
