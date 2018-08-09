@@ -5,8 +5,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const jwt = require('jsonwebtoken');
+const morgan = require('morgan');
+
 // create express app
+const securityConfig = require('./config/security.config');
 const app = express();
+
+// set app secret
+app.set('superSecret', securityConfig.secret);
+
+// setup morgan for console logging
+app.use(morgan('dev'));
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -44,6 +54,7 @@ app.get('/', (req, res) => {
 
 // setup routes
 require('./app/routes/question.routes')(app);
+require('./app/routes/user.routes')(app);
 
 // fire up the server - listen for requests
 app.listen(3000, () => {
