@@ -7,19 +7,19 @@ module.exports = (app) => {
   const questions = require('../controllers/question.controller');
 
   // create a new question
-  app.post('/questions', questions.create);
+  app.post('/api/v1/questions', questions.create);
 
   // get all questions
-  app.get('/questions', questions.findAll);
+  app.get('/api/v1/questions', questions.findAll);
 
   // get a single question given questionId
-  app.get('/questions/:questionId', questions.findOne);
+  app.get('/api/v1/questions/:questionId', questions.findOne);
 
   // update a question given questionId
-  app.put('/questions/:questionId', questions.update);
+  app.put('/api/v1/questions/:questionId', questions.update);
 
   // delete a question given questionId
-  app.delete('/questions/:questionId', questions.delete);
+  app.delete('/api/v1/questions/:questionId', questions.delete);
 
 }
 

@@ -7,9 +7,9 @@ module.exports = (app) => {
   app.post('/authenticate', users.authenticate);
 
   // create a new user
-  app.post('/users', users.create);
+  app.post('/api/v1/users', users.create);
 
   // fetch all users
-  app.get('/users', users.findAll);
+  app.get('/api/v1/users', users.findAll);
 
 }

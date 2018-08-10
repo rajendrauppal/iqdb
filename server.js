@@ -51,6 +51,15 @@ app.get('/', (req, res) => {
   });
 });
 
+
+// protect API routes with authentication
+const apiRoutes = express.Router();
+const user = require('./app/controllers/user.controller');
+
+apiRoutes.use(user.authorize);
+
+app.use('/api/v1', apiRoutes);
+
 // setup routes
 require('./app/routes/question.routes')(app);
 require('./app/routes/user.routes')(app);
