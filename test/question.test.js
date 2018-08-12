@@ -1,5 +1,5 @@
 
-// set NODE_ENV to test for testing duration
+// set NODE_ENV to test for testing
 process.env.NODE_ENV = 'test';
 
 const mongoose = require('mongoose');
@@ -12,9 +12,9 @@ const should = chai.should();
 
 chai.use(chaiHttp);
 
-// clear the database before running each test
 describe('Questions', () => {
 
+  // clear the database before running each test
   beforeEach((done) => {
     Question.remove({}, (err) => {
       done();
