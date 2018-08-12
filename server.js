@@ -64,6 +64,21 @@ app.use('/api/v1', apiRoutes);
 require('./app/routes/question.routes')(app);
 require('./app/routes/user.routes')(app);
 
+// setup redis and rate limiter
+const redis = require('redis');
+const RateLimit = require('ratelimit.js').RateLimit;
+const ExpressMiddleware = require('ratelimit.js').ExpressMiddleware;
+
+let rateLimiter = new RateLimit(redis.createClient(), [{ interval: 1, limit: 10 }]);
+let limitMiddleware = new ExpressMiddleware(rateLimiter);
+
+// handle rate limits in all routes
+app.use(limitMiddleware.middleware(function (req, res, next) {
+  res.status(429).json({
+    message: "Rate limit exceeded"
+  });
+}));
+
 // fire up the server - listen for requests
 app.listen(3000, () => {
   console.log("Server is listening on port 3000");
