@@ -51,7 +51,6 @@ app.get('/', (req, res) => {
   });
 });
 
-
 // protect API routes with authentication
 const apiRoutes = express.Router();
 const user = require('./app/controllers/user.controller');

@@ -12,4 +12,22 @@ const userSchema = mongoose.Schema(
   }
 );
 
+class Card {
+
+  constructor(name, type) {
+    this.name = name;
+    this.type = type;
+  }
+
+  setOffer(offer) {
+    this.offer = offer;
+  }
+
+  getOffer() {
+    return this.offer.getOffer();
+  }
+
+}
+
 module.exports = mongoose.model('User', userSchema);
+module.exports = Card;
